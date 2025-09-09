@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dot indicator dimensions -->
+    <dimen name="dot_size">8dp</dimen>
+    <dimen name="dot_margin">4dp</dimen>
+    
+    <!-- Animation durations -->
+    <dimen name="anim_duration_short">150</dimen>
+    <dimen name="anim_duration_medium">250</dimen>
+    <dimen name="anim_duration_long">400</dimen>
+    
+    <!-- ViewPager2 page margin -->
+    <dimen name="page_margin">16dp</dimen>
+</resources>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp"
+    app:cardBackgroundColor="@color/card_background"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/card_stroke"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Profile icon with circular background -->
+        <LinearLayout
+            android:id="@+id/profile_container"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_circle_accent"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_female_silhouette"
+                android:tint="@color/white" />
+        </LinearLayout>
+
+        <!-- Contact name -->
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Jane Doe"
+            android:textColor="@color/primary_text"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintStart_toEndOf="@id/profile_container"
+            app:layout_constraintTop_toTopOf="@id/profile_container"
+            app:layout_constraintEnd_toStartOf="@id/action_container"
+            android:layout_marginStart="16dp"/>
+
+        <!-- Phone number -->
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="+1 555-0100"
+            android:textColor="@color/secondary_text"
+            android:textSize="14sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Relationship chip -->
+
+        <!-- Action buttons -->
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_relationship"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Family"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:chipBackgroundColor="@color/chip_background"
+            app:chipStrokeColor="@color/primary"
+            app:chipStrokeWidth="1dp"
+
+            app:layout_constraintStart_toStartOf="@+id/phone"
+            app:layout_constraintTop_toBottomOf="@+id/phone" />
+
+        <LinearLayout
+            android:id="@+id/action_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/btn_call"
+                    android:src="@drawable/ic_call"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/button_backend"
+                    />
+
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/btn_edit"
+                    android:src="@drawable/ic_edit"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/button_backend"
+                    />
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/btn_delete"
+                    android:layout_marginHorizontal="5dp"
+                    android:src="@drawable/ic_delete"
+                    android:background="@drawable/button_backend"
+                    />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

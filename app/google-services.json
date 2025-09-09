@@ -1,0 +1,163 @@
+{
+  "project_info": {
+    "project_number": "157325783257",
+    "firebase_url": "https://first-firebase-46cfe-default-rtdb.firebaseio.com",
+    "project_id": "first-firebase-46cfe",
+    "storage_bucket": "first-firebase-46cfe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157325783257:android:0c05b964122f70241e4ec8",
+        "android_client_info": {
+          "package_name": "com.Fitness.fitnessapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxoeCK70S0WvT-U8184L6jRFloMKrTDqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157325783257:android:cfaf47e20d65ed331e4ec8",
+        "android_client_info": {
+          "package_name": "com.example.gamified"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxoeCK70S0WvT-U8184L6jRFloMKrTDqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157325783257:android:0aacb2d6991221b31e4ec8",
+        "android_client_info": {
+          "package_name": "com.example.girlsbraclet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxoeCK70S0WvT-U8184L6jRFloMKrTDqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157325783257:android:fff0c77b9c59d7f11e4ec8",
+        "android_client_info": {
+          "package_name": "com.example.khadija"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxoeCK70S0WvT-U8184L6jRFloMKrTDqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157325783257:android:7d93801aa16c4af41e4ec8",
+        "android_client_info": {
+          "package_name": "com.hiskytech.portfolio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxoeCK70S0WvT-U8184L6jRFloMKrTDqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157325783257:android:dc1f9fc30239267a1e4ec8",
+        "android_client_info": {
+          "package_name": "com.naseeb.homegarden"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxoeCK70S0WvT-U8184L6jRFloMKrTDqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157325783257:android:67bb897b51412cb51e4ec8",
+        "android_client_info": {
+          "package_name": "com.naseeb.memes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxoeCK70S0WvT-U8184L6jRFloMKrTDqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157325783257:android:c240a52ce1ee0c0d1e4ec8",
+        "android_client_info": {
+          "package_name": "com.naseeb.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxoeCK70S0WvT-U8184L6jRFloMKrTDqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
