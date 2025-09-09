@@ -1,0 +1,140 @@
+<resources>
+    <!-- App Info -->
+    <string name="app_name">GirlSafe</string>
+    <string name="splash_app_name">GirlSafe</string>
+    <string name="splash_tagline">Your safety, our priority</string>
+
+    <!-- Navigation -->
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="emergency">Emergency</string>
+
+    <!-- Auth -->
+    <string name="onboarding">Welcome</string>
+    <string name="login">Login</string>
+    <string name="register">Create Account</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">Welcome to GirlSafe</string>
+    <string name="onboarding_subtitle">Your safety, our priority.</string>
+    <string name="get_started">Get Started</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="done">Done</string>
+
+    <!-- Onboarding pages -->
+    <string name="ob1_title">Emergency Alert</string>
+    <string name="ob1_desc">Quickly alert your trusted contacts when you feel unsafe.</string>
+    <string name="ob2_title">Live Location</string>
+    <string name="ob2_desc">Share your real-time location with friends and family.</string>
+    <string name="ob3_title">Safety Tips</string>
+    <string name="ob3_desc">Learn practical tips to stay safe wherever you go.</string>
+
+    <!-- Authentication -->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="or_continue_with">Or continue with</string>
+    <string name="dont_have_account">Don\'t have an account? %1$s</string>
+    <string name="already_have_account">Already have an account? %1$s</string>
+
+    <!-- Google Sign-In -->
+    <string name="default_web_client_id">YOUR_WEB_CLIENT_ID.apps.googleusercontent.com</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+
+    <!-- Facebook Login -->
+    <string name="facebook_app_id">YOUR_FACEBOOK_APP_ID</string>
+    <string name="fb_login_protocol_scheme">fbYOUR_FACEBOOK_APP_ID</string>
+    <string name="sign_in_with_facebook">Sign in with Facebook</string>
+
+    <!-- Google Maps -->
+    <string name="google_maps_key">YOUR_GOOGLE_MAPS_API_KEY</string>
+    <string name="my_location">My Location</string>
+    <string name="share_location">Share Location</string>
+    <string name="location_shared">Location shared with trusted contacts</string>
+
+    <!-- Emergency -->
+    <string name="sos">SOS</string>
+    <string name="hold_for_sos">HOLD FOR SOS</string>
+    <string name="cancel_sos">CANCEL (%d)</string>
+    <string name="sos_active">SOS ACTIVE</string>
+    <string name="sos_alert_message">EMERGENCY! I need help! My location: %1$s</string>
+    <string name="sos_contacts">Emergency Contacts</string>
+    <string name="add_emergency_contact">Add Emergency Contact</string>
+    <string name="no_emergency_contacts">No emergency contacts added</string>
+
+    <!-- Safety Service -->
+    <string name="safety_service">Safety Service</string>
+    <string name="safety_service_active">Safety Service Active</string>
+    <string name="tracking_your_location">Tracking your location in the background</string>
+    <string name="tracks_your_location">Tracks your location for safety purposes</string>
+
+    <!-- AI Monitoring -->
+    <string name="ai_monitoring">AI Safety Monitoring</string>
+    <string name="ai_monitoring_enabled">AI monitoring enabled</string>
+    <string name="ai_monitoring_disabled">AI monitoring disabled</string>
+    <string name="sound_detection">Sound Detection</string>
+    <string name="motion_detection">Motion Detection</string>
+    <string name="sound_sensitivity">Sound Sensitivity</string>
+    <string name="motion_sensitivity">Motion Sensitivity</string>
+    <string name="enable_ai_monitoring">Enable AI Monitoring</string>
+    <string name="enable_sound_detection">Enable Sound Detection</string>
+    <string name="enable_motion_detection">Enable Motion Detection</string>
+    <string name="ai_monitoring_description">Automatically detect emergencies using sound and motion sensors</string>
+    <string name="sound_detection_description">Listen for screams, shouts, or other distress sounds</string>
+    <string name="motion_detection_description">Detect sudden movements, falls, or struggle patterns</string>
+    <string name="sensitivity_low">Low</string>
+    <string name="sensitivity_medium">Medium</string>
+    <string name="sensitivity_high">High</string>
+    <string name="sensitivity_custom">Custom: %d%%</string>
+
+    <!-- Notifications -->
+    <string name="notifications">Notifications</string>
+    <string name="enable_notifications">Enable Notifications</string>
+    <string name="enable_vibration">Vibrate on Detection</string>
+    <string name="enable_sound">Play Sound on Detection</string>
+    <string name="emergency_notification_title">Emergency Detected!</string>
+    <string name="emergency_notification_text">Potential emergency situation detected. Tap for details.</string>
+
+    <!-- Permissions -->
+    <string name="permissions_required_message">This app needs the following permissions to function properly. Please grant them to continue.</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="permission_denied">Permission Denied</string>
+    <string name="grant">Grant</string>
+    <string name="cancel">Cancel</string>
+    <string name="ai_monitoring_permission_rationale">To enable AI monitoring, we need access to the microphone and motion sensors. These permissions are required to detect potential emergencies.</string>
+    <string name="ai_monitoring_permission_denied">AI monitoring requires microphone and motion sensor permissions to function properly.</string>
+
+    <!-- Errors -->
+    <string name="error_occurred">An error occurred. Please try again.</string>
+
+    <!-- Buttons -->
+    <string name="save">Save</string>
+    <string name="reset">Reset</string>
+    <string name="enable">Enable</string>
+    <string name="disable">Disable</string>
+
+    <!-- Help & Support -->
+    <string name="help">Help</string>
+    <string name="support">Support</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="version">Version %s</string>
+
+
+    <string name="emergency_notification_channel_name">Emergency Alerts</string>
+    <string name="emergency_notification_channel_description">Emergency notifications and alerts</string>
+
+    <string name="ai_monitoring_started">AI monitoring started</string>
+    <string name="ai_monitoring_stopped">AI monitoring stopped</string>
+    <string name="failed_to_start_ai_monitoring">Failed to start AI monitoring</string>
+
+    <!-- Content Descriptions -->
+    <string name="fake_call">Fake Call</string>
+    <string name="contacts">Contacts</string>
+    <string name="notification_icon">Notifications</string>
+    <string name="sos_button">Emergency SOS Button</string>
+</resources>

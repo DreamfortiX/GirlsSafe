@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Brand colors -->
+    <color name="red">#CF6679</color>
+    <color name="girlsafety_primary">#FF2D4F</color>
+    <color name="girlsafety_secondary">#FF6B8E</color>
+    <color name="primary">#BB86FC</color>
+    <color name="primary_light">#E1BFFC</color>
+    <color name="primary_dark">#3700B3</color>
+    <color name="primary_variant">#3700B3</color>
+    <color name="secondary">#03DAC5</color>
+    <color name="secondary_variant">#018786</color>
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="error">#CF6679</color>
+    <color name="on_primary">#000000</color>
+    <color name="on_secondary">#000000</color>
+    <color name="on_background">#FFFFFF</color>
+    <color name="on_surface">#FFFFFF</color>
+    <color name="on_error">#000000</color>
+    
+    <!-- Text colors -->
+    <color name="text_primary">#E6E6E6</color>
+    <color name="text_secondary">#B3B3B3</color>
+    <color name="text_hint">#757575</color>
+    <color name="text_primary_dark">#212121</color>
+    <color name="text_secondary_dark">#757575</color>
+    
+    <!-- Text aliases for compatibility -->
+    <color name="primary_text">@color/text_primary</color>
+    <color name="secondary_text">@color/text_secondary</color>
+    
+    <!-- UI elements -->
+    <color name="divider">#1F1F1F</color>
+    <color name="divider_light">#EEEEEE</color>
+    <color name="card_background">#1F1B24</color>
+    <color name="card_stroke">#2A2A2A</color>
+    <color name="chip_background">#1E1E1E</color>
+    
+    <!-- Buttons -->
+    <color name="call_button_background">#332A7C</color>
+    <color name="edit_button_background">#333333</color>
+    <color name="delete_button_background">#331A1A</color>
+    
+    <!-- Icons -->
+    <color name="edit_icon">#4FC3F7</color>
+    <color name="delete_icon">#F44336</color>
+    <color name="icon_active">#BB86FC</color>
+    <color name="icon_inactive">#757575</color>
+    
+    <!-- Theme colors -->
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+    <color name="on_surface_variant">@color/text_secondary</color>
+    <color name="primary_container">@color/primary</color>
+    <color name="surface_container_highest">@color/card_background</color>
+    
+    <!-- Status colors -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FFC107</color>
+    <color name="error_light">#FFCDD2</color>
+    <color name="safe_green">#4CAF50</color>
+    
+    <!-- Switch colors -->
+    <color name="switch_thumb">#FFFFFF</color>
+    <color name="switch_track">#4D000000</color>
+    <color name="switch_track_checked">#3F51B5</color>
+    
+    <!-- Slider colors -->
+    <color name="purple_200">#BB86FC</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="gray_200">#757575</color>
+</resources>
