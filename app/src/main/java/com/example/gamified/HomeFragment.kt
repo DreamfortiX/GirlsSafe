@@ -21,7 +21,12 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
+import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
+import com.example.gamified.data.AppDatabase
+import com.example.gamified.data.Contact
+import com.example.gamified.contacts.ContactsFragment
 import androidx.navigation.fragment.findNavController
 
 // Google Play Services
@@ -29,13 +34,9 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
-
 // Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-
-// Dagger Hilt
-import dagger.hilt.android.AndroidEntryPoint
 
 // Kotlin Coroutines
 import kotlinx.coroutines.Dispatchers
@@ -47,9 +48,6 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 // Local
-import com.example.gamified.data.AppDatabase
-import com.example.gamified.data.Contact
-import com.example.gamified.contacts.ContactsFragment
 
 // Java
 import java.io.File
@@ -58,6 +56,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.UUID
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.tasks.await
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -100,13 +101,13 @@ class HomeFragment : Fragment() {
         cardContacts = view.findViewById(R.id.cardContacts)
         btnRecordAudio = view.findViewById(R.id.btnRecordAudio)
         safetyToggle = view.findViewById(R.id.safetyToggle)
-        
+
         // Set up safety toggle listener
         safetyToggle.setOnCheckedChangeListener { _, isChecked ->
             isLocationSharingEnabled = isChecked
             // Update UI or perform any additional actions when toggle state changes
         }
-        
+
         // Initialize Firebase Storage reference
         storageRef = FirebaseStorage.getInstance().reference.child("recordings")
 
@@ -175,7 +176,7 @@ class HomeFragment : Fragment() {
         getLastLocation { location ->
             currentLocation = location
             var message = "EMERGENCY! I need help!"
-            
+
             // Only include location if sharing is enabled
             if (isLocationSharingEnabled && location != null) {
                 val lat = location.latitude
@@ -247,6 +248,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun simulateFakeCall() {
+        Toast.makeText(requireContext(), "Fake call incoming in 10 seconds!", Toast.LENGTH_LONG).show()
+        Handler(Looper.getMainLooper()).postDelayed({
+            val fakeCallIntent = Intent(Intent.ACTION_DIAL)
+            fakeCallIntent.data = Uri.parse("tel:0123456789")
+            startActivity(fakeCallIntent)
+        }, 10_000)
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 // Get contacts from DB safely inside coroutine
@@ -256,7 +263,7 @@ class HomeFragment : Fragment() {
                         .getAll()
                         .first() // Get the first emission from the Flow
                 }
-                
+
                 val validContacts = contacts.filter { contact ->
                     contact.firstName.isNotBlank() && contact.phone.isNotBlank()
                 }

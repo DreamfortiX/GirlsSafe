@@ -36,7 +36,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_female_silhouette"
-                android:tint="@color/white" />
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/tvWelcome"
@@ -64,8 +64,8 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_notification"
-                android:tint="@color/white"
-                android:contentDescription="@string/notification_icon" />
+                android:contentDescription="@string/notification_icon"
+                app:tint="@color/white" />
         </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
@@ -104,7 +104,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/ic_safe"
-                        android:tint="@color/safe_green" />
+                        app:tint="@color/safe_green" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -163,7 +163,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/ic_sos_white"
-                    android:tint="@color/white" />
+                    app:tint="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -231,8 +231,9 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:src="@drawable/call"
-                        android:contentDescription="@string/fake_call"
-                        app:tint="@color/primary" />
+                        app:tint="@color/primary"
+
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -269,8 +270,8 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:src="@drawable/contact"
-                        android:tint="@color/primary"
-                        android:contentDescription="@string/contacts" />
+                        android:contentDescription="@string/contacts"
+                        app:tint="@color/primary" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -320,7 +321,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/microphone"
-                        android:tint="@color/primary" />
+                        app:tint="@color/primary" />
 
                     <TextView
                         android:layout_width="0dp"
