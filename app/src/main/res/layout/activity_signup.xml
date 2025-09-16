@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@drawable/bg_gradient_girls">
+    android:background="@drawable/bg_gradient">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -194,14 +194,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account?"
-                android:textColor="@android:color/white"
+                android:textColor="@color/secondary_text"
                 android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" Login"
-                android:textColor="@android:color/white"
+                android:textColor="@color/secondary_text"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:drawablePadding="4dp"

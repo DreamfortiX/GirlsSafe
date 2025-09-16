@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@drawable/bg_gradient_girls">
+    android:background="@drawable/bg_gradient">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,13 +24,13 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/ic_girlsafe_logo"
-                app:tint="@android:color/white" />
+                app:tint="#FFFFFF" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GirlSafe"
-                android:textColor="@android:color/white"
+                android:textColor="#FFFFFF"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp"
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Your safety, our priority"
-                android:textColor="#CCFFFFFF"
+                android:textColor="#CCFFFCFC"
                 android:textSize="16sp"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
@@ -229,14 +229,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Don't have an account?"
-                android:textColor="@android:color/white"
+                android:textColor="@color/secondary_text"
                 android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" Create Now"
-                android:textColor="@android:color/white"
+                android:textColor="@color/secondary_text"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:drawablePadding="4dp"

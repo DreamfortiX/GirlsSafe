@@ -1,78 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
+
     <!-- Brand colors -->
-    <color name="red">#CF6679</color>
-    <color name="girlsafety_primary">#FF2D4F</color>
-    <color name="girlsafety_secondary">#FF6B8E</color>
-    <color name="primary">#BB86FC</color>
-    <color name="primary_light">#E1BFFC</color>
-    <color name="primary_dark">#3700B3</color>
-    <color name="primary_variant">#3700B3</color>
-    <color name="secondary">#03DAC5</color>
-    <color name="secondary_variant">#018786</color>
-    <color name="background">#121212</color>
-    <color name="surface">#1E1E1E</color>
-    <color name="error">#CF6679</color>
-    <color name="on_primary">#000000</color>
+    <color name="red">#E11D48</color> <!-- Strong Rose Red -->
+    <color name="girlsafety_primary">#8B5CF6</color> <!-- Vibrant Purple (matches splash) -->
+    <color name="girlsafety_secondary">#EC4899</color> <!-- Bright Pink (balanced with purple) -->
+    <color name="primary">#8B5CF6</color> <!-- Vibrant Violet -->
+    <color name="primary_light">#C4B5FD</color> <!-- Light Lavender -->
+    <color name="primary_dark">#4C1D95</color> <!-- Deep Purple -->
+    <color name="primary_variant">#7C3AED</color>
+    <color name="secondary">#22D3EE</color> <!-- Aqua Blue -->
+    <color name="secondary_variant">#0891B2</color>
+    <color name="background">#FAF5FF</color> <!-- Soft Lilac Background -->
+    <color name="surface">#FDF4FF</color> <!-- Very Light Lavender -->
+    <color name="error">#DC2626</color> <!-- Strong Red -->
+    <color name="on_primary">#FFFFFF</color>
     <color name="on_secondary">#000000</color>
-    <color name="on_background">#FFFFFF</color>
-    <color name="on_surface">#FFFFFF</color>
-    <color name="on_error">#000000</color>
-    
+    <color name="on_background">#1E1B4B</color> <!-- Dark Indigo Text -->
+    <color name="on_surface">#1E1B4B</color>
+    <color name="on_error">#FFFFFF</color>
+
+
+    <!-- Card Backgrounds -->
+    <color name="card_background">#FFFFFF</color> <!-- White cards on light gradient -->
+    <color name="card_stroke">#E9D5FF</color>   <!-- Soft lavender border -->
+
+    <!-- Text Colors -->
+    <color name="primary_text">#1E1B4B</color>   <!-- Dark Indigo -->
+    <color name="secondary_text">#4B5563</color> <!-- Medium Gray -->
+    <color name="text_hint">#9CA3AF</color>      <!-- Light Gray -->
+
+
     <!-- Text colors -->
-    <color name="text_primary">#E6E6E6</color>
-    <color name="text_secondary">#B3B3B3</color>
-    <color name="text_hint">#757575</color>
-    <color name="text_primary_dark">#212121</color>
-    <color name="text_secondary_dark">#757575</color>
-    
-    <!-- Text aliases for compatibility -->
-    <color name="primary_text">@color/text_primary</color>
-    <color name="secondary_text">@color/text_secondary</color>
-    
+    <color name="text_primary">#1F2937</color> <!-- Dark Gray -->
+    <color name="text_secondary">#6B7280</color> <!-- Medium Gray -->
+    <color name="text_primary_dark">#111827</color>
+    <color name="text_secondary_dark">#6B7280</color>
+
     <!-- UI elements -->
-    <color name="divider">#1F1F1F</color>
-    <color name="divider_light">#EEEEEE</color>
-    <color name="card_background">#1F1B24</color>
-    <color name="card_stroke">#2A2A2A</color>
-    <color name="chip_background">#1E1E1E</color>
-    
+    <color name="divider">#E5E7EB</color>
+    <color name="divider_light">#F3F4F6</color>
+    <color name="chip_background">#FCE7F3</color> <!-- Light Pink Chip -->
+
     <!-- Buttons -->
-    <color name="call_button_background">#332A7C</color>
-    <color name="edit_button_background">#333333</color>
-    <color name="delete_button_background">#331A1A</color>
-    
+    <color name="call_button_background">#2563EB</color> <!-- Safe Blue -->
+    <color name="edit_button_background">#9333EA</color>
+    <color name="delete_button_background">#DC2626</color>
+
     <!-- Icons -->
-    <color name="edit_icon">#4FC3F7</color>
-    <color name="delete_icon">#F44336</color>
-    <color name="icon_active">#BB86FC</color>
-    <color name="icon_inactive">#757575</color>
-    
+    <color name="edit_icon">#3B82F6</color> <!-- Blue Icon -->
+    <color name="delete_icon">#EF4444</color>
+    <color name="icon_active">#8B5CF6</color>
+    <color name="icon_inactive">#9CA3AF</color>
+
     <!-- Theme colors -->
-    <color name="teal_200">#03DAC5</color>
-    <color name="teal_700">#018786</color>
+    <color name="teal_200">#5EEAD4</color>
+    <color name="teal_700">#0F766E</color>
     <color name="on_surface_variant">@color/text_secondary</color>
     <color name="primary_container">@color/primary</color>
     <color name="surface_container_highest">@color/card_background</color>
-    
+
     <!-- Status colors -->
-    <color name="success">#4CAF50</color>
-    <color name="warning">#FFC107</color>
-    <color name="error_light">#FFCDD2</color>
-    <color name="safe_green">#4CAF50</color>
-    
+    <color name="success">#10B981</color> <!-- Green Success -->
+    <color name="warning">#F59E0B</color> <!-- Amber Warning -->
+    <color name="error_light">#FECACA</color>
+    <color name="safe_green">#34D399</color>
+
     <!-- Switch colors -->
     <color name="switch_thumb">#FFFFFF</color>
-    <color name="switch_track">#4D000000</color>
-    <color name="switch_track_checked">#3F51B5</color>
-    
+    <color name="switch_track">#E9D5FF</color> <!-- Light Lavender -->
+    <color name="switch_track_checked">#7C3AED</color>
+
     <!-- Slider colors -->
-    <color name="purple_200">#BB86FC</color>
-    <color name="purple_500">#6200EE</color>
-    <color name="purple_700">#3700B3</color>
-    <color name="gray_200">#757575</color>
+    <color name="purple_200">#C4B5FD</color>
+    <color name="purple_500">#8B5CF6</color>
+    <color name="purple_700">#6D28D9</color>
+    <color name="gray_200">#9CA3AF</color>
+
 </resources>
