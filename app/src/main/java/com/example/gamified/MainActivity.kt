@@ -9,8 +9,6 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -23,10 +21,8 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.gamified.databinding.ActivityMainBinding
-import com.example.gamified.service.SafetyService
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.lifecycle.lifecycleScope
 import com.example.gamified.viewmodels.AuthViewModel
@@ -96,7 +92,6 @@ class MainActivity : AppCompatActivity() {
             if (checkPermissions()) {
                 // Delay service start to ensure UI is ready
                 Handler(Looper.getMainLooper()).postDelayed({
-                    startSafetyService()
                 }, 500)
             } else {
                 requestPermissions()
@@ -176,105 +171,101 @@ class MainActivity : AppCompatActivity() {
     }
     
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun requestEssentialPermissions() {
-        val permissionsToRequest = ESSENTIAL_PERMISSIONS.filter {
+    private fun requestEssentialPermissions(permissionIndex: Int = 0) {
+        val permissions = ESSENTIAL_PERMISSIONS.filter {
             ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
-        }.toTypedArray()
+        }
         
-        if (permissionsToRequest.isEmpty()) {
-            // Essential permissions already granted, request optional ones
+        if (permissions.isEmpty() || permissionIndex >= permissions.size) {
+            // All essential permissions processed, move to optional ones
             requestOptionalPermissions()
             return
         }
         
-        // Check if we should show rationale
-        val shouldShowRationale = permissionsToRequest.any {
-            ActivityCompat.shouldShowRequestPermissionRationale(this, it)
-        }
+        val currentPermission = permissions[permissionIndex]
         
-        if (shouldShowRationale) {
-            showPermissionExplanationDialog(permissionsToRequest, PERMISSION_REQUEST_CODE_ESSENTIAL)
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, currentPermission)) {
+            showPermissionExplanationDialog(arrayOf(currentPermission)) { 
+                requestSinglePermission(currentPermission, permissionIndex)
+            }
         } else {
-            ActivityCompat.requestPermissions(
-                this,
-                permissionsToRequest,
-                PERMISSION_REQUEST_CODE_ESSENTIAL
-            )
+            requestSinglePermission(currentPermission, permissionIndex)
         }
     }
     
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun requestOptionalPermissions() {
+    private fun requestOptionalPermissions(permissionIndex: Int = 0) {
         val optionalPermissions = getRequiredPermissions().filter {
             it !in ESSENTIAL_PERMISSIONS && 
             ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
-        }.toTypedArray()
+        }
         
-        if (optionalPermissions.isEmpty()) {
-            // All permissions granted
-            startSafetyService()
+        if (optionalPermissions.isEmpty() || permissionIndex >= optionalPermissions.size) {
+            // All permissions processed
             return
         }
         
-        ActivityCompat.requestPermissions(
-            this,
-            optionalPermissions,
-            PERMISSION_REQUEST_CODE_OPTIONAL
-        )
+        val currentPermission = optionalPermissions[permissionIndex]
+        
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, currentPermission)) {
+            showPermissionExplanationDialog(arrayOf(currentPermission), showOptional = true) { 
+                requestSinglePermission(currentPermission, permissionIndex, isOptional = true)
+            }
+        } else {
+            requestSinglePermission(currentPermission, permissionIndex, isOptional = true)
+        }
     }
 
+    private fun requestSinglePermission(permission: String, currentIndex: Int, isOptional: Boolean = false) {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(permission),
+            if (isOptional) PERMISSION_REQUEST_CODE_OPTIONAL else PERMISSION_REQUEST_CODE_ESSENTIAL
+        )
+    }
+    
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun showPermissionExplanationDialog(permissions: Array<String>, requestCode: Int) {
+    private fun showPermissionExplanationDialog(
+        permissions: Array<String>,
+        requestCode: Int = 0,
+        showOptional: Boolean = false,
+        onContinue: () -> Unit = {}
+    ) {
         val message = buildString {
-            append("This app needs the following permissions to function properly:\n\n")
+            append("This app needs the following permission:\n\n")
             
-            permissions.forEach { permission ->
+            permissions.firstOrNull()?.let { permission ->
                 when (permission) {
                     Manifest.permission.ACCESS_FINE_LOCATION ->
-                        append("• Location: To track your location in case of emergencies\n")
+                        append("• Location: To track your location in case of emergencies")
                     Manifest.permission.SEND_SMS ->
-                        append("• SMS: To send emergency alerts to your contacts\n")
+                        append("• SMS: To send emergency alerts to your contacts")
                     Manifest.permission.READ_CONTACTS ->
-                        append("• Contacts: To access emergency contacts\n")
+                        append("• Contacts: To access emergency contacts")
                     Manifest.permission.RECORD_AUDIO ->
-                        append("• Microphone: For audio recording features\n")
+                        append("• Microphone: For audio recording features")
                     Manifest.permission.READ_PHONE_STATE ->
-                        append("• Phone: To detect phone calls\n")
+                        append("• Phone: To detect phone calls")
                     Manifest.permission.ACTIVITY_RECOGNITION ->
-                        append("• Activity: To detect if you're in a vehicle\n")
+                        append("• Activity: To detect if you're in a vehicle")
                 }
             }
             
-            append("\nPlease grant these permissions for the app to work properly.")
+            append("\n\nPlease grant this permission for the app to work properly.")
         }
         
         AlertDialog.Builder(this)
-            .setTitle("Permissions Required")
+            .setTitle("Permission Required")
             .setMessage(message)
             .setPositiveButton("Continue") { _, _ ->
-                ActivityCompat.requestPermissions(
-                    this,
-                    permissions,
-                    requestCode
-                )
+                onContinue()
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton("Skip") { dialog, _ ->
                 dialog.dismiss()
-                if (requestCode == PERMISSION_REQUEST_CODE_ESSENTIAL) {
-                    // Check if we have minimum required permissions
-                    val hasEssentialPermissions = ESSENTIAL_PERMISSIONS.all { permission ->
-                        ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
-                    }
-                    
-                    if (!hasEssentialPermissions) {
-                        Toast.makeText(
-                            this,
-                            "App may not function properly without essential permissions",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } else {
-                        requestOptionalPermissions()
-                    }
+                if (showOptional) {
+                    requestOptionalPermissions()
+                } else {
+                    requestEssentialPermissions()
                 }
             }
             .setCancelable(false)
@@ -289,99 +280,95 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         
-        when (requestCode) {
-            PERMISSION_REQUEST_CODE_ESSENTIAL -> handleEssentialPermissionResult(permissions, grantResults)
-            PERMISSION_REQUEST_CODE_OPTIONAL -> handleOptionalPermissionResult()
-        }
-    }
-    
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun handleEssentialPermissionResult(permissions: Array<out String>, grantResults: IntArray) {
-        val allGranted = grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
+        // Convert Array<out String> to Array<String> for type safety
+        val permissionsArray = permissions.map { it }.toTypedArray()
         
-        if (allGranted) {
-            // All essential permissions granted, request optional ones
-            requestOptionalPermissions()
+        when (requestCode) {
+            PERMISSION_REQUEST_CODE_ESSENTIAL -> handleEssentialPermissionResult(permissionsArray, grantResults)
+            PERMISSION_REQUEST_CODE_OPTIONAL -> handleOptionalPermissionResult(permissionsArray, grantResults)
+        }
+    }
+    
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun handleEssentialPermissionResult(permissions: Array<String>, grantResults: IntArray) {
+        if (grantResults.isEmpty()) return
+        
+        val currentIndex = ESSENTIAL_PERMISSIONS.indexOfFirst { it == permissions[0] }
+        if (currentIndex == -1) return
+        
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Permission granted, move to next one
+            requestEssentialPermissions(currentIndex + 1)
         } else {
-            // Check if essential permissions are granted
-            val hasEssentialPermissions = ESSENTIAL_PERMISSIONS.all { permission ->
-                ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
-            }
-            
-            if (hasEssentialPermissions) {
-                // Essential permissions are granted, proceed with optional ones
-                requestOptionalPermissions()
+            // Permission denied, move to next one
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
+                // User denied, show rationale again
+                showPermissionExplanationDialog(permissions) {
+                    requestSinglePermission(permissions[0], currentIndex)
+                }
             } else {
-                // Essential permissions missing, show rationale
-                showPermissionRationale()
+                // User checked 'Don't ask again', move to next permission
+                requestEssentialPermissions(currentIndex + 1)
             }
         }
     }
     
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun handleOptionalPermissionResult() {
-        // Optional permissions result - we can proceed even if some were denied
-        try {
-            startSafetyService()
+    private fun handleOptionalPermissionResult(permissions: Array<String> = arrayOf(), grantResults: IntArray = intArrayOf()) {
+        if (grantResults.isEmpty() || permissions.isEmpty()) {
+            requestOptionalPermissions()
+            return
+        }
+        
+        val currentIndex = getRequiredPermissions()
+            .filter { it !in ESSENTIAL_PERMISSIONS }
+            .indexOfFirst { it == permissions[0] }
             
-            // Check if any optional permissions were denied
-            val optionalPermissions = getRequiredPermissions()
-                .filter { it !in ESSENTIAL_PERMISSIONS }
-                .filter { ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED }
-                
-            if (optionalPermissions.isNotEmpty()) {
-                Log.d("MainActivity", "Some optional permissions were denied: $optionalPermissions")
-                Toast.makeText(
-                    this,
-                    "App started with limited functionality. Some features may not work.",
-                    Toast.LENGTH_LONG
-                ).show()
+        if (currentIndex != -1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, move to next one
+                requestOptionalPermissions(currentIndex + 1)
+            } else {
+                // Permission denied, check if we should show rationale
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
+                    // User denied, show rationale again
+                    showPermissionExplanationDialog(permissions, showOptional = true) {
+                        requestSinglePermission(permissions[0], currentIndex, isOptional = true)
+                    }
+                } else {
+                    // User checked 'Don't ask again', move to next permission
+                    requestOptionalPermissions(currentIndex + 1)
+                }
             }
-        } catch (e: Exception) {
-            Log.e("MainActivity", "Failed to start safety service", e)
+        } else {
+            // If we couldn't find the current permission, just move to the next one
+            requestOptionalPermissions()
         }
     }
     
-    private fun showPermissionRationale() {
-        // You can implement a dialog here that explains why permissions are needed
-        // and provides a button to open app settings or request permissions again
-        // This is a better UX than automatically requesting permissions in a loop
-        // Example:
-        /*
+    private fun showPermissionRationale(permission: String) {
+        val message = when (permission) {
+            Manifest.permission.ACCESS_FINE_LOCATION ->
+                "Location permission is required to track your location in case of emergencies."
+            Manifest.permission.SEND_SMS ->
+                "SMS permission is required to send emergency alerts to your contacts."
+            Manifest.permission.READ_CONTACTS ->
+                "Contacts permission is required to access your emergency contacts."
+            else -> "This permission is required for the app to function properly."
+        }
+
         AlertDialog.Builder(this)
-            .setTitle("Permissions Required")
-            .setMessage("This app needs certain permissions to function properly. Please grant the permissions in App Settings.")
+            .setTitle("Permission Required")
+            .setMessage(message)
             .setPositiveButton("Open Settings") { _, _ ->
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri = Uri.fromParts("package", packageName, null)
+                val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = android.net.Uri.fromParts("package", packageName, null)
                 intent.data = uri
                 startActivity(intent)
             }
             .setNegativeButton("Cancel", null)
+            .setCancelable(false)
             .show()
-        */
-    }
-
-    private fun startSafetyService() {
-        try {
-            val serviceIntent = Intent(this, SafetyService::class.java)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(serviceIntent)
-            } else {
-                startService(serviceIntent)
-            }
-        } catch (e: Exception) {
-            Log.e("MainActivity", "Failed to start safety service", e)
-            // Try to restart the service after a delay
-            Handler(Looper.getMainLooper()).postDelayed({
-                try {
-                    val serviceIntent = Intent(this, SafetyService::class.java)
-                    startService(serviceIntent)
-                } catch (e: Exception) {
-                    Log.e("MainActivity", "Failed to restart safety service", e)
-                }
-            }, 1000)
-        }
     }
     // Removed duplicate permission request methods as they've been replaced with the new implementation
 

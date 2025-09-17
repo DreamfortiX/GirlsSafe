@@ -23,7 +23,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.gamified.data.AppDatabase
 import com.example.gamified.databinding.FragmentEmergencyBinding
 import com.example.gamified.manager.EmergencyManager
-import com.example.gamified.service.SafetyService
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -132,7 +131,6 @@ class EmergencyFragment : Fragment() {
         binding.sosButton.text = getString(R.string.sos_active)
         
         try {
-            startSafetyService()
             
             // Get current location and send to emergency contacts
             getLastLocation { location ->
@@ -191,7 +189,6 @@ class EmergencyFragment : Fragment() {
         
         try {
             emergencyManager.stopEmergency()
-            stopSafetyService()
         } catch (e: Exception) {
             Log.e("EmergencyFragment", "Error stopping emergency", e)
         }
@@ -426,16 +423,6 @@ class EmergencyFragment : Fragment() {
             data = android.net.Uri.fromParts("package", requireContext().packageName, null)
         }
         startActivity(intent)
-    }
-    
-    private fun startSafetyService() {
-        val serviceIntent = Intent(requireContext(), SafetyService::class.java)
-        ContextCompat.startForegroundService(requireContext(), serviceIntent)
-    }
-    
-    private fun stopSafetyService() {
-        val serviceIntent = Intent(requireContext(), SafetyService::class.java)
-        requireContext().stopService(serviceIntent)
     }
 
     override fun onDestroyView() {

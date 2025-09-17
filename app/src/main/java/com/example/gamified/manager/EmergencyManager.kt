@@ -11,7 +11,6 @@ import android.util.Log
 import android.os.Looper
 import androidx.core.content.ContextCompat
 import com.example.gamified.R
-import com.example.gamified.service.AIMonitoringService
 import com.example.gamified.utils.PermissionUtils
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -48,21 +47,6 @@ class EmergencyManager(private val context: Context) {
         getLastKnownLocation()
         // AI initialization is disabled
     }
-    
-    //private fun initializeAIManager() {
-    //    if (aiManager == null) {
-    //        aiManager = AIManager(context, ::onAIDetectedEmergency)
-    //    }
-    //}
-    //
-    //private fun onAIDetectedEmergency() {
-    //    Log.d("EmergencyManager", "AI detected emergency situation")
-    //    // Only trigger emergency if not already active
-    //    if (!isEmergencyActive) {
-    //        triggerEmergency()
-    //    }
-    //}
-    
     fun cleanup() {
         contactsListener?.remove()
         contactsListener = null
