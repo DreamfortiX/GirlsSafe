@@ -6,10 +6,10 @@
     android:viewportHeight="24">
     <!-- Shield -->
     <path
-        android:fillColor="#FFFFFFFF"
+        android:fillColor="#FF0000"
         android:pathData="M12,1 L3,5 v6 c0,5.55 3.84,10.74 9,12 5.16,-1.26 9,-6.45 9,-12 V5 L12,1 z"/>
     <!-- Heart (simple) -->
     <path
-        android:fillColor="#FFFFFFFF"
+        android:fillColor="#FFFFFF"
         android:pathData="M12,9.5 c-0.9,-1.1 -2.6,-1.2 -3.6,-0.2 -1,1 -1,2.7 0,3.7 l3.6,3.3 3.6,-3.3 c1,-1 1,-2.7 0,-3.7 -1,-1 -2.7,-0.9 -3.6,0.2 z"/>
 </vector>

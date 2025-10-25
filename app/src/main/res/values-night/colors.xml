@@ -26,7 +26,7 @@
 
 
     <!-- Card Backgrounds -->
-    <color name="card_background">#FFFFFF</color> <!-- White cards on light gradient -->
+    <color name="card_background">#E4E1E1</color> <!-- White cards on light gradient -->
     <color name="card_stroke">#E9D5FF</color>   <!-- Soft lavender border -->
 
     <!-- Text Colors -->

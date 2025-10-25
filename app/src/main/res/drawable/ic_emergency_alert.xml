@@ -6,12 +6,12 @@
     android:viewportHeight="24">
     <!-- Simple alert circle with exclamation mark -->
     <path
-        android:fillColor="#FF2D4F"
+        android:fillColor="#FFFFFF"
         android:pathData="M12,2A10,10 0 1,0 22,12 10,10 0 0,0 12,2z"/>
     <path
-        android:fillColor="#FFFFFF"
+        android:fillColor="#FF0000"
         android:pathData="M11,6h2v8h-2z"/>
     <path
-        android:fillColor="#FFFFFF"
+        android:fillColor="#E40000"
         android:pathData="M11,16h2v2h-2z"/>
 </vector>

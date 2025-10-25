@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@drawable/bg_gradient"
+    android:background="@drawable/back"
     tools:context=".HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
