@@ -28,45 +28,31 @@
     <!-- Card Backgrounds -->
     <color name="card_background">#E4E1E1</color> <!-- White cards on light gradient -->
     <color name="card_stroke">#E9D5FF</color>   <!-- Soft lavender border -->
-
-    <!-- Text Colors -->
-    <color name="primary_text">#1E1B4B</color>   <!-- Dark Indigo -->
-    <color name="secondary_text">#4B5563</color> <!-- Medium Gray -->
     <color name="text_hint">#9CA3AF</color>      <!-- Light Gray -->
 
 
     <!-- Text colors -->
     <color name="text_primary">#1F2937</color> <!-- Dark Gray -->
     <color name="text_secondary">#6B7280</color> <!-- Medium Gray -->
-    <color name="text_primary_dark">#111827</color>
-    <color name="text_secondary_dark">#6B7280</color>
-
     <!-- UI elements -->
     <color name="divider">#E5E7EB</color>
-    <color name="divider_light">#F3F4F6</color>
-    <color name="chip_background">#FCE7F3</color> <!-- Light Pink Chip -->
-
-    <!-- Buttons -->
-    <color name="call_button_background">#2563EB</color> <!-- Safe Blue -->
-    <color name="edit_button_background">#9333EA</color>
-    <color name="delete_button_background">#DC2626</color>
-
-    <!-- Icons -->
-    <color name="edit_icon">#3B82F6</color> <!-- Blue Icon -->
-    <color name="delete_icon">#EF4444</color>
     <color name="icon_active">#8B5CF6</color>
     <color name="icon_inactive">#9CA3AF</color>
 
-    <!-- Theme colors -->
-    <color name="teal_200">#5EEAD4</color>
-    <color name="teal_700">#0F766E</color>
-    <color name="on_surface_variant">@color/text_secondary</color>
-    <color name="primary_container">@color/primary</color>
-    <color name="surface_container_highest">@color/card_background</color>
 
-    <!-- Status colors -->
-    <color name="success">#10B981</color> <!-- Green Success -->
-    <color name="warning">#F59E0B</color> <!-- Amber Warning -->
+
+        <!-- Dark theme colors -->
+        <color name="background_dark">#121212</color>
+        <color name="text_primary_dark">#FFFFFF</color>
+        <color name="surface_dark">#1E1E1E</color>
+        <color name="surface_variant_dark">#2D2D2D</color>
+        <color name="text_secondary_dark">#B3B3B3</color>
+        
+        <!-- Background colors for cards in dark theme -->
+        <color name="background_A">#1E1E1E</color>  <!-- Dark surface color -->
+        <color name="background_B">#424242</color>  <!-- Lighter gray for stroke in dark theme
+
+    <color name="warning">#F59E0B</color> <!- Amber Warning -->
     <color name="error_light">#FECACA</color>
     <color name="safe_green">#34D399</color>
 
@@ -80,5 +66,8 @@
     <color name="purple_500">#8B5CF6</color>
     <color name="purple_700">#6D28D9</color>
     <color name="gray_200">#9CA3AF</color>
+    <color name="danger_card">#83FF4444</color>
+    <color name="safe_card">#4D4CAF50</color>
+
 
 </resources>

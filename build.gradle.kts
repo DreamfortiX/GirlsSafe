@@ -43,13 +43,8 @@ allprojects {
         // Try Google's Maven repository first
         google()
         // Then try Maven Central with retry policy
-        mavenCentral {
-            content {
-                includeGroupByRegex("org\\.jetbrains.*")
-                includeGroupByRegex("com\\.google\\.*")
-            }
-        }
-        // Add JitPack as a fallback
+        mavenCentral()
+        // Add JitPack repository for audio recording libraries
         maven { url = uri("https://jitpack.io") }
     }
     configurations.all {

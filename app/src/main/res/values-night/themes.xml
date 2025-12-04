@@ -1,38 +1,44 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Gamified" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Base application dark theme. -->
+    <style name="Base.Theme.Gamified" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Window attributes -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
         <!-- Material 3 theme attributes -->
-        <item name="materialThemeOverlay">@style/ThemeOverlay.Gamified.Material3</item>
-        <!-- Material 3 color scheme -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryContainer">@color/primary_light</item>
-        <item name="colorOnPrimary">@color/on_primary</item>
-        <item name="colorOnPrimaryContainer">@color/on_primary</item>
+        <item name="materialThemeOverlay" tools:ignore="DuplicateDefinition">@style/ThemeOverlay.Gamified.Material3.Dark</item>
 
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorOnSecondary">@color/on_secondary</item>
-        <item name="colorSecondaryContainer">@color/surface</item>
-        <item name="colorOnSecondaryContainer">@color/on_surface</item>
+        <!-- Color Scheme -->
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryContainer">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
 
-        <item name="android:colorBackground">@color/background</item>
-        <item name="colorOnBackground">@color/on_background</item>
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorSecondary">@color/secondary_light</item>
+        <item name="colorSecondaryContainer">@color/secondary_dark</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/secondary</item>
 
-        <item name="colorError">@color/error</item>
-        <item name="colorOnError">@color/on_error</item>
-
-        <!-- Status bar and navigation bar -->
         <item name="android:statusBarColor">@color/black</item>
         <item name="android:navigationBarColor">@color/black</item>
-        <item name="android:enforceNavigationBarContrast">false</item>
-        <item name="android:enforceStatusBarContrast">false</item>
-        <item name="android:windowTranslucentStatus">false</item>
-        <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:colorBackground">@color/background_dark</item>
+        <item name="colorOnBackground">@color/text_primary_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorOnSurface">@color/text_primary_dark</item>
+        <item name="colorSurfaceVariant">@color/surface_variant_dark</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary_dark</item>
+
+        <item name="colorError">@color/error_light</item>
+        <item name="colorOnError">@color/black</item>
+        <item name="colorErrorContainer">@color/error_dark</item>
+        <item name="colorOnErrorContainer">@color/error_light</item>
+
+        <item name="colorOutline">@color/outline_dark</item>
+        <item name="colorOnSurfaceInverse">@color/black</item>
+        <item name="colorSurfaceInverse">@color/surface_light</item>
+        <item name="colorPrimaryInverse">@color/primary_light</item>
 
         <!-- Component styles -->
         <item name="materialButtonStyle">@style/Widget.Gamified.Button</item>
@@ -53,20 +59,32 @@
 
     <style name="Theme.Gamified" parent="Base.Theme.Gamified" />
 
-    <!-- Material 3 Theme Overlay -->
-    <style name="ThemeOverlay.Gamified.Material3" parent="">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_dark</item>
-        <item name="colorOnPrimary">@color/on_primary</item>
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorSecondaryVariant">@color/secondary_variant</item>
-        <item name="colorOnSecondary">@color/on_secondary</item>
-        <item name="android:colorBackground">@color/background</item>
-        <item name="colorOnBackground">@color/on_background</item>
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorOnSurface">@color/on_surface</item>
-        <item name="colorError">@color/error</item>
-        <item name="colorOnError">@color/on_error</item>
+    <!-- Material 3 Theme Overlay for Dark Theme -->
+    <style name="ThemeOverlay.Gamified.Material3.Dark" parent="ThemeOverlay.Material3.Dark">
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryContainer">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+
+        <item name="colorSecondary">@color/secondary_light</item>
+        <item name="colorSecondaryContainer">@color/secondary_dark</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/secondary</item>
+
+        <item name="android:colorBackground">@color/background_dark</item>
+        <item name="colorOnBackground">@color/text_primary_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorOnSurface">@color/text_primary_dark</item>
+        <item name="colorSurfaceVariant">@color/surface_variant_dark</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary_dark</item>
+
+        <item name="colorError">@color/error_light</item>
+        <item name="colorOnError">@color/black</item>
+        <item name="colorErrorContainer">@color/error_dark</item>
+        <item name="colorOnErrorContainer">@color/error_light</item>
+
+        <item name="colorOutline">@color/outline_dark</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <!-- Bottom Navigation Style -->

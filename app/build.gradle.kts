@@ -67,10 +67,22 @@ android {
     }
 }
 
-// Remove the resolution strategy block - it's causing more issues than it solves
-// Let Gradle handle dependency resolution naturally
-
 dependencies {
+    // Audio Recording (using Android's built-in MediaRecorder)
+    // No additional dependencies needed
+    
+    // Network
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    
+    // TensorFlow Lite
+    implementation("org.tensorflow:tensorflow-lite:2.16.1")
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-task-audio:0.4.4")
+    
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.16.0") {
         exclude(group = "com.android.support")
@@ -95,7 +107,7 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.viewpager2)
     implementation(libs.androidx.cardview)
-
+    
     // Hilt - Dependency Injection
     val hiltVersion = "2.57.1"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
@@ -154,6 +166,11 @@ dependencies {
 
     // WorkManager
     implementation("androidx.work:work-runtime-ktx:2.9.0")
+    // Glide for image loading
+    implementation ("com.github.bumptech.glide:glide:4.13.0")
+
+// Circular ImageView
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
     // UI Components
     implementation(libs.circleimageview)

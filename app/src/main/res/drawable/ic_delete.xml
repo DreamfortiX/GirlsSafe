@@ -4,7 +4,7 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24"
-    android:tint="@color/delete_icon">
+    android:tint="@color/red">
   <path
       android:fillColor="@android:color/white"
       android:pathData="M16,9v10H8V9h8m-1.5-6h-5l-1,1H5v2h14V4h-3.5l-1-1z"/>

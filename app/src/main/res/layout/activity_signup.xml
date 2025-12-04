@@ -12,38 +12,109 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:layout_marginBottom="40dp">-->
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_girlsafe_logo"
-                android:tint="@android:color/white" />
+<!--            <ImageView-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:src="@drawable/ic_girlsafe_logo"-->
+<!--                android:tint="@android:color/white" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Create Account"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:textSize="28sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:letterSpacing="0.03" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Join GirlSafe and stay protected"-->
+<!--                android:textColor="#CCFFFFFF"-->
+<!--                android:textSize="16sp"-->
+<!--                android:layout_marginTop="4dp" />-->
+<!--        </LinearLayout>-->
+
+        <!-- Profile Picture Upload Section -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create Account"
-                android:textColor="@android:color/white"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:layout_marginTop="16dp"
-                android:letterSpacing="0.03" />
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="24dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Join GirlSafe and stay protected"
-                android:textColor="#CCFFFFFF"
-                android:textSize="16sp"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profileImageContainer"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:cardCornerRadius="60dp"
+                    app:cardElevation="6dp"
+                    android:layout_marginBottom="16dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_circle_primary">
+
+                        <ImageView
+                            android:id="@+id/profileImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_profile"
+                            android:contentDescription="@string/profile_picture"
+                            />
+
+                        <!-- Add Photo Icon Overlay -->
+                        <ImageView
+                            android:id="@+id/addPhotoIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_add_photo"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/bg_circle_accent"
+                            android:padding="8dp"
+                            app:tint="@color/white" />
+
+                        <!-- Progress Bar for Upload -->
+                        <ProgressBar
+                            android:id="@+id/profileImageProgress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/btnUploadPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Profile Picture"
+                    android:textColor="@color/girlsafety_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="16dp"
+                    android:background="@drawable/bg_rounded_outline"
+                    android:drawablePadding="8dp"
+                    app:drawableStartCompat="@drawable/ic_camera" />
+            </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/signupCard"
@@ -68,6 +139,36 @@
                     android:textAlignment="center"/>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilSignupName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:layout_marginVertical="10dp"
+                    app:startIconDrawable="@drawable/ic_name"
+                    app:startIconTint="@color/girlsafety_primary"
+                    app:hintTextColor="@color/text_hint"
+                    android:textColorHint="@color/text_hint"
+                    app:boxStrokeColor="@color/girlsafety_primary"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="2dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSignupName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="FUll Name"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_hint" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilSignupEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,9 +177,9 @@
                     app:boxBackgroundColor="@android:color/white"
                     app:boxCornerRadiusTopStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
-                    android:layout_marginVertical="10dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusBottomEnd="12dp"
+                    android:layout_marginVertical="10dp"
                     app:startIconDrawable="@drawable/ic_email"
                     app:startIconTint="@color/girlsafety_primary"
                     app:hintTextColor="@color/text_hint"
@@ -141,8 +242,8 @@
                     app:boxCornerRadiusTopStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
-                    android:layout_marginVertical="10dp"
                     app:boxCornerRadiusBottomEnd="12dp"
+                    android:layout_marginVertical="10dp"
                     app:startIconDrawable="@drawable/ic_lock"
                     app:startIconTint="@color/girlsafety_primary"
                     app:endIconMode="password_toggle"

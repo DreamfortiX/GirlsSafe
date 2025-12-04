@@ -78,7 +78,7 @@
         <!-- Profile -->
         <fragment
             android:id="@+id/profileFragment"
-            android:name="com.example.gamified.profile.ProfileFragment"
+            android:name="com.example.gamified.fragments.ProfileFragment"
             android:label="@string/profile"
             tools:layout="@layout/fragment_profile" />
             
@@ -90,5 +90,22 @@
             tools:layout="@layout/fragment_contacts" />
             
     </navigation>
+    <!-- Inside the main_navigation section, add this after the profileFragment -->
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.gamified.contacts.EditContactFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile" />
+
+    <!-- And modify the profileFragment to include the action -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.gamified.fragments.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
 
 </navigation>

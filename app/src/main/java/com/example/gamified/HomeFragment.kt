@@ -16,6 +16,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -34,6 +35,9 @@ import com.google.android.material.card.MaterialCardView
 // Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 // Kotlin Coroutines
 import kotlinx.coroutines.Dispatchers
@@ -41,6 +45,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.graphics.Color
+import android.os.Build
+import android.view.WindowManager
 
 // Local
 
@@ -62,8 +69,11 @@ class HomeFragment : Fragment() {
     private var isRecording = false
     private var currentAudioFilePath: String? = null
     private lateinit var storageRef: StorageReference
+    private lateinit var auth: FirebaseAuth
+    private val db = FirebaseFirestore.getInstance()
 
     private lateinit var tvWelcome: TextView
+    private lateinit var ivProfile: ImageView
     private lateinit var sosCard: MaterialCardView
     private lateinit var cardFakeCall: MaterialCardView
     private lateinit var cardContacts: MaterialCardView
@@ -73,6 +83,33 @@ class HomeFragment : Fragment() {
 
     companion object {
         private const val PERMISSION_REQUEST_CODE = 201
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+        // Set status bar color and make it translucent
+        activity?.window?.apply {
+            // Clear any existing flags
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            // Add the translucent flag
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            // Set the status bar color to transparent with a light tint
+            statusBarColor = Color.parseColor("#28FFFFFF")
+            // Make the status bar icons dark
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            }
+            // Make the navigation bar translucent
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                navigationBarColor = Color.TRANSPARENT
+                navigationBarDividerColor = Color.TRANSPARENT
+                setFlags(
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+                )
+            }
+        }
     }
 
     override fun onCreateView(
@@ -103,9 +140,12 @@ class HomeFragment : Fragment() {
         // Initialize Firebase Storage reference
         storageRef = FirebaseStorage.getInstance().reference.child("recordings")
 
-        // Welcome text from Activity intent extras
-        val username = activity?.intent?.getStringExtra("USER_NAME") ?: "User"
-        tvWelcome.text = "Hello, $username!"
+        // Initialize Firebase Auth and UI elements
+        auth = FirebaseAuth.getInstance()
+        ivProfile = view.findViewById(R.id.ivProfile)
+        
+        // Fetch and display user's data
+        fetchUserData()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
@@ -449,6 +489,54 @@ class HomeFragment : Fragment() {
             .addOnFailureListener { e ->
                 Log.e("HomeFragment", "Error saving audio reference", e)
             }
+    }
+
+    private fun fetchUserData() {
+        val currentUser = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val db = com.google.firebase.firestore.FirebaseFirestore.getInstance()
+            db.collection("users").document(currentUser.uid)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        // Get user name
+                        val name = document.getString("name") ?: 
+                                 document.getString("displayName") ?: 
+                                 currentUser.email?.substringBefore("@") ?: "User"
+                        tvWelcome.text = "Hello, $name!"
+                        
+                        // Get and load profile picture
+                        val profileImageUrl = document.getString("profileImageUrl")
+                        if (!profileImageUrl.isNullOrEmpty()) {
+                            Glide.with(this@HomeFragment)
+                                .load(profileImageUrl)
+                                .circleCrop()
+                                .placeholder(R.drawable.ic_female_silhouette)
+                                .error(R.drawable.ic_female_silhouette)
+                                .into(ivProfile)
+                        } else {
+                            // Set default profile picture if no image URL is available
+                            ivProfile.setImageResource(R.drawable.ic_female_silhouette)
+                        }
+                    } else {
+                        // If no user document exists
+                        val name = currentUser.email?.substringBefore("@") ?: "User"
+                        tvWelcome.text = "Hello, $name!"
+                        ivProfile.setImageResource(R.drawable.ic_female_silhouette)
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.e("HomeFragment", "Error fetching user data", exception)
+                    // Fallback to default values
+                    val name = currentUser.email?.substringBefore("@") ?: "User"
+                    tvWelcome.text = "Hello, $name!"
+                    ivProfile.setImageResource(R.drawable.ic_female_silhouette)
+                }
+        } else {
+            // User not logged in
+            tvWelcome.text = "Hello, User!"
+            ivProfile.setImageResource(R.drawable.ic_female_silhouette)
+        }
     }
 
     override fun onStop() {

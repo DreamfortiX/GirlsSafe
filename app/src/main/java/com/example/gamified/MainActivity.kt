@@ -114,6 +114,9 @@ class MainActivity : AppCompatActivity() {
         // Set up bottom navigation
         val bottomNav = binding.bottomNavigation
         bottomNav.setupWithNavController(navController)
+        
+        // Show bottom nav by default
+        bottomNav.visibility = View.VISIBLE
 
         // Set up action bar with nav controller
         val appBarConfiguration = AppBarConfiguration(
@@ -124,30 +127,42 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
+        // Add navigation listener to handle fragment transactions
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            // Show/hide bottom nav based on destination
+            when (destination.id) {
+                R.id.homeFragment, R.id.emergencyFragment, R.id.profileFragment -> {
+                    bottomNav.visibility = View.VISIBLE
+                }
+                else -> {
+                    bottomNav.visibility = View.GONE
+                }
+            }
+        }
+
         // Collect authentication state
         lifecycleScope.launch {
             authViewModel.authenticationState.collect { authenticationState ->
+                Log.d("AuthState", "Authentication state changed: $authenticationState")
                 when (authenticationState) {
                     AuthViewModel.AuthenticationState.AUTHENTICATED -> {
-                        // User is authenticated, show bottom navigation
-                        bottomNav.visibility = android.view.View.VISIBLE
+                        // User is authenticated, ensure bottom navigation is visible
+                        bottomNav.visibility = View.VISIBLE
                     }
                     
                     AuthViewModel.AuthenticationState.AUTHENTICATING -> {
-                        // Show loading state if needed
-                        bottomNav.visibility = android.view.View.GONE
+                        // Keep bottom nav visible during authentication
+                        bottomNav.visibility = View.VISIBLE
                     }
 
                     AuthViewModel.AuthenticationState.UNAUTHENTICATED -> {
-                        // User is not authenticated
-                        if (bottomNav.visibility != View.GONE) {
-                            bottomNav.visibility = android.view.View.GONE
-                            // Only navigate to login if we're not already on the login screen
-                            if (this@MainActivity !is LoginActivity) {
-                                val intent = Intent(this@MainActivity, LoginActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                startActivity(intent)
-                            }
+                        // Only navigate to login if we're not already on the login screen
+                        if (this@MainActivity !is LoginActivity) {
+                            bottomNav.visibility = View.GONE
+                            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                            finish()
                         }
                     }
                 }

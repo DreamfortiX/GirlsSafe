@@ -58,7 +58,7 @@
 
     <!-- Emergency -->
     <string name="sos">SOS</string>
-    <string name="hold_for_sos">HOLD FOR SOS</string>
+    <string name="Click_to_start_recording">Click To Start Recording </string>
     <string name="cancel_sos">CANCEL (%d)</string>
     <string name="sos_active">SOS ACTIVE</string>
     <string name="sos_alert_message">EMERGENCY! I need help! My location: %1$s</string>
@@ -99,6 +99,39 @@
     <string name="emergency_notification_title">Emergency Detected!</string>
     <string name="emergency_notification_text">Potential emergency situation detected. Tap for details.</string>
 
+    <!-- Profile -->
+
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="help_and_support">Help &amp; Support</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
+    <string name="member_since">Member since %1$s</string>
+    <string name="account">Account</string>
+    <string name="support">Support</string>
+    <string name="contact_support">For any assistance, please contact our support team at support@girlsafe.app</string>
+    <string name="about_app">GirlSafe v1.0.0\n\nA safety application designed to empower and protect women.</string>
+    <string name="confirm_logout">Are you sure you want to logout?</string>
+    <string name="profile_updated">Profile updated successfully</string>
+    <string name="upload_failed">Failed to upload image. Please try again.</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="choose_from_gallery">Choose from Gallery</string>
+    <string name="ok">OK</string>
+    <string name="profile_picture">Profile Picture</string>
+
+    <!-- Buttons -->
+    <string name="save">Save</string>
+    <string name="reset">Reset</string>
+    <string name="enable">Enable</string>
+    <string name="disable">Disable</string>
+
+    <!-- Help & Support -->
+    <string name="help">Help</string>
+    <string name="help_support">Help &amp; Support</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="version">Version %s</string>
+
     <!-- Permissions -->
     <string name="permissions_required_message">This app needs the following permissions to function properly. Please grant them to continue.</string>
     <string name="permission_required">Permission Required</string>
@@ -111,20 +144,7 @@
     <!-- Errors -->
     <string name="error_occurred">An error occurred. Please try again.</string>
 
-    <!-- Buttons -->
-    <string name="save">Save</string>
-    <string name="reset">Reset</string>
-    <string name="enable">Enable</string>
-    <string name="disable">Disable</string>
-
-    <!-- Help & Support -->
-    <string name="help">Help</string>
-    <string name="support">Support</string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
-    <string name="version">Version %s</string>
-
-
+    <!-- Notifications -->
     <string name="emergency_notification_channel_name">Emergency Alerts</string>
     <string name="emergency_notification_channel_description">Emergency notifications and alerts</string>
 
@@ -138,4 +158,20 @@
     <string name="notification_icon">Notifications</string>
     <string name="sos_button">Emergency SOS Button</string>
     <string name="your_safety_our_priority">Your safety, our priority</string>
+    <string name="are_you_sure_you_want_to_logout">Are You sure</string>
+    <plurals name="emergency_contacts_count">
+        <item quantity="one">%d Emergency Contact</item>
+        <item quantity="other">%d Emergency Contacts</item>
+    </plurals>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Add these inside the <resources> tag in strings.xml -->
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+
+    <string name="points">Points: %s</string>
+    <string name="level">Level: %s</string>
+    <string name="email_us">Email Us</string>
+    <string name="password_updated">Password updated successfully</string>
 </resources>
